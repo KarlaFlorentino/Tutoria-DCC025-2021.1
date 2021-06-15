@@ -47,7 +47,7 @@ public class Main {
         int ataqueJ1, ataqueJ2, defesaJ1, defesaJ2;
     	int rodadas = 1;
 
-    	while (pontosVidaJ1 > 0 && pontosVidaJ2 > 0 && rodadas <= 20) {
+    	while (pontosVidaJ1 > 0 && pontosVidaJ2 > 0 && rodadas <= 10) {
             ataqueJ1 = 2 * (nivelJ1 * nivelJ1) * experienciaJ1;
             defesaJ1 = nivelJ1 * (experienciaJ1 * experienciaJ1);
                 
