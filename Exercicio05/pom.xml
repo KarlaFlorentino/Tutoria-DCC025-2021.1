@@ -20,7 +20,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.mycompany.exercicio05.Main</mainClass>
+              <mainClass>com.mycompany.exercicio05.Tabuleiro</mainClass>
             </manifest>
           </archive>
         </configuration>

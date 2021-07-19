@@ -17,8 +17,6 @@ public class Jogador {
     private int pontosVida = 50;
     private int nivel = 1;
     private int experiencia = 1;
-    private int forcaDefesa = 1;
-    private int forcaAtaque = 2;
 
     public String getNome() {
         return nome;
@@ -62,13 +60,11 @@ public class Jogador {
     }
 
     public int getForcaDefesa() {
-        this.forcaDefesa = this.nivel * (this.experiencia * this.experiencia);
-        return forcaDefesa;
+        return this.nivel * (this.experiencia * this.experiencia);
     }
 
     public int getForcaAtaque() {
-        this.forcaAtaque = 2 * this.experiencia * (this.nivel * this.nivel);
-        return forcaAtaque;
+        return 2 * this.experiencia * (this.nivel * this.nivel);
     }
     
     public static String ajuda(){

@@ -12,8 +12,9 @@ import javax.swing.JOptionPane;
  *
  * @author karla
  */
-public class Main {
-     public static void coletar(Jogador jogador){
+public class Tabuleiro {
+    
+        public static void coletar(Jogador jogador){
             char opcao = JOptionPane.showInputDialog("Parabéns, você encontrou um tesouro! Deseja coletar(s/n)? ").charAt(0);
             switch(opcao){
                 case 's':
@@ -27,28 +28,50 @@ public class Main {
         }
         
         public static void desafiar(Jogador jogador, Jogador oponente){
-            char opcao = JOptionPane.showInputDialog("Você deseja desafiar "+ oponente.getNome()+" para um confronto(s/n)? ").charAt(0);
-            switch(opcao){
+            char opcaoJ1 = JOptionPane.showInputDialog("Você deseja desafiar "+ oponente.getNome()+" para um confronto(s/n)? ").charAt(0);
+            switch(opcaoJ1){
                 case 's':
-                    int diferenca = jogador.getForcaAtaque() - oponente.getForcaDefesa();
-                    if(diferenca > 0){
-                        JOptionPane.showMessageDialog(null, "Você venceu!");
+                    char opcaoJ2 = JOptionPane.showInputDialog(oponente.getNome() + ", você foi desafiado para um confronto. Aceita o desafio(s/n)?").charAt(0);
+                    
+                    if(opcaoJ2 == 's'){
+                        int diferencaTurno1 = jogador.getForcaAtaque() - oponente.getForcaDefesa();
+                        if(diferencaTurno1 > 0){
+                            jogador.setNivel(jogador.getNivel() + 1);
+                            jogador.setPontosVida(50);
+
+                            oponente.setPontosVida(oponente.getPontosVida() - 1);
+                        }else if(diferencaTurno1 == 0){
+                            jogador.setNivel(jogador.getNivel() + 1);
+                            jogador.setPontosVida(50);
+
+                            oponente.setNivel(oponente.getNivel() + 1);
+                            oponente.setPontosVida(50);
+                        }else{
+                            jogador.setPontosVida(jogador.getPontosVida() - 1);
+                        }
                         
-                        jogador.setNivel(jogador.getNivel() + 1);
-                        jogador.setPontosVida(50);
-                        
-                        oponente.setPontosVida(oponente.getPontosVida() - 1);
-                    }else if(diferenca == 0){
-                        JOptionPane.showMessageDialog(null, "Empate!");
-                        jogador.setNivel(jogador.getNivel() + 1);
-                        jogador.setPontosVida(50);
-                        
-                        oponente.setNivel(oponente.getNivel() + 1);
-                        oponente.setPontosVida(50);
+                        int diferencaTurno2 = oponente.getForcaAtaque() - jogador.getForcaDefesa();
+                        if(diferencaTurno2 > 0){
+                            oponente.setNivel(oponente.getNivel() + 1);
+                            oponente.setPontosVida(50);
+
+                            jogador.setPontosVida(jogador.getPontosVida() - 1);
+                        }else if(diferencaTurno2 == 0){
+                            oponente.setNivel(oponente.getNivel() + 1);
+                            oponente.setPontosVida(50);
+                            
+                            jogador.setNivel(jogador.getNivel() + 1);
+                            jogador.setPontosVida(50);
+                        }else{
+                            oponente.setPontosVida(oponente.getPontosVida() - 1);
+                        }
                     }else{
-                        JOptionPane.showMessageDialog(null, "Você perdeu!");
-                        jogador.setPontosVida(jogador.getPontosVida() - 1);
+                        JOptionPane.showMessageDialog(null, "Opção inválida!");
                     }
+                    
+                    JOptionPane.showMessageDialog(null, jogador.imprime());
+                    JOptionPane.showMessageDialog(null, oponente.imprime());
+        
                     break;
                 case 'n':
                     break;
@@ -161,16 +184,17 @@ public class Main {
             }
         }
         
-        /*for(int i = 0; i < ordem; i++){
-            for(int j = 0; j < ordem; j++){
-                System.out.print("\t" + matriz[i][j] + "|");
-            }
-            System.out.println("");
-        }
-        System.out.println("------------------------------");*/
-        
         int opcaoJ1 = 0, opcaoJ2 = 0;
         while(opcaoJ1 != 3 || opcaoJ2 != 3){
+            for(int i = 0; i < ordem; i++){
+                for(int j = 0; j < ordem; j++){
+                    System.out.print("\t" + matriz[i][j] + "|");
+                }
+                System.out.println("");
+            }
+            System.out.println("------------------------------");
+
+            
             if(opcaoJ1 != 3){
                 if(jogador1.getPontosVida() < 1){
                     JOptionPane.showMessageDialog(null, jogador1.getNome() + " zerou os pontoa de vida!");
@@ -193,6 +217,15 @@ public class Main {
             }else{
                 matriz[jogador1.getPosicao()[0]][jogador1.getPosicao()[1]] = ' ';
             }
+            
+            
+            for(int i = 0; i < ordem; i++){
+                for(int j = 0; j < ordem; j++){
+                    System.out.print("\t" + matriz[i][j] + "|");
+                }
+                System.out.println("");
+            }
+            System.out.println("------------------------------");
             
             if(opcaoJ2 != 3){
                 opcaoJ2 = Integer.parseInt(JOptionPane.showInputDialog(jogador2.getNome() 
