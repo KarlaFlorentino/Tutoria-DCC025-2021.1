@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Jogador {
     private String nome;
     private int posicao[] = new int[2];
-    private int pontosVida = 50;
+    private int pontosVida = 5;
     private int nivel = 1;
     private int experiencia = 1;
 
@@ -66,22 +66,14 @@ public class Jogador {
     public int getForcaAtaque() {
         return 2 * this.experiencia * (this.nivel * this.nivel);
     }
-    
-    public static String ajuda(){
-      return "Um jogador deve coletar tesouros espalhados pelo cenário \n "
-           + "para aumentar os seus pontos de experiência. Caso deseje,\n"
-           + "ele poderá desafiar outros jogadores para um confronto. \n"
-           + "O vencedor do desafio aumenta seu nível em uma unidade e \n"
-           + "toda sua vida é recuperada.";
-    }
 
-    public String imprime(){
-        return  "Nome: " + this.nome + "\n" +
-                "Posição: (" + this.posicao[0] + ", " + this.posicao[1] + ")\n"+
-                "Pontos de Vida: " + this.pontosVida + "\n" +
-                "Nível: " + this.nivel + "\n" +
-                "Experiência: " + this.experiencia + "\n" +
-                "Força de Defesa: " + getForcaDefesa() + "\n" +
-                "Força de Ataque: " + getForcaAtaque();
-    } 
+    public void imprime() {
+        JOptionPane.showMessageDialog(null, "Nome: " + this.nome + "\n"
+                + "Posição: (" + this.posicao[0] + ", " + this.posicao[1] + ")\n"
+                + "Pontos de Vida: " + this.pontosVida + "\n"
+                + "Nível: " + this.nivel + "\n"
+                + "Experiência: " + this.experiencia + "\n"
+                + "Força de Defesa: " + getForcaDefesa() + "\n"
+                + "Força de Ataque: " + getForcaAtaque());
+    }
 }
