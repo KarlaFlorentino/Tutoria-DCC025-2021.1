@@ -7,6 +7,7 @@ package com.mycompany.exercicio07;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -27,28 +28,44 @@ public class Main {
     public static void main(String[] args) {
         List<Jogador> jogadores = new ArrayList<Jogador>();
         
-        Jogador jogador1 = new Jogador();
-        jogador1.setNome("J1"); jogador1.setPosicao(4, 2);
-        jogadores.add(jogador1);
+        Scanner teclado = new Scanner(System.in);
         
-        Jogador jogador2 = new Jogador();
-        jogador2.setNome("J2"); jogador2.setPosicao(6, 3);
-        jogadores.add(jogador2);
+        Jogador[] jogador = new Jogador[5]; 
         
-        Jogador jogador3 = new Jogador();
-        jogador3.setNome("J3"); jogador3.setPosicao(1, 5);
-        jogadores.add(jogador3);
+        for(int i = 0; i < jogador.length; i++) { 
+            jogador[i] = new Jogador(); 
+            
+            System.out.println("--- Jogador " + (i+1) + " ---");
+            System.out.print("\nInforme um nome: ");
+            jogador[i].setNome(teclado.next()); 
+            
+            System.out.print("Informe o nivel: ");
+            jogador[i].setNivel(teclado.nextInt());
+            
+            System.out.print("Informe a experiencia: ");
+            jogador[i].setExperiencia(teclado.nextInt());
+            
+            System.out.print("Informe a linha: ");
+            int x = teclado.nextInt();
+            System.out.print("Informe a coluna: ");
+            int y = teclado.nextInt();
+            
+            System.out.println("");
+            
+            jogador[i].setPosicao(x, y);
+            
+            jogadores.add(jogador[i]);
+        } 
+
+        System.out.print("Agora informe a posicao para analise..");
+        System.out.print("\nInforme a linha: ");
+        int x = teclado.nextInt();
+        System.out.print("Informe a coluna: ");
+        int y = teclado.nextInt();
         
-        Jogador jogador4 = new Jogador();
-        jogador4.setNome("J4"); jogador4.setPosicao(0, 0);
-        jogadores.add(jogador4);
+        int posicao[] = {x, y};
         
-        Jogador jogador5 = new Jogador();
-        jogador5.setNome("J5"); jogador5.setPosicao(7, 7);
-        jogadores.add(jogador5);
-        
-        int posicao[] = {3, 3};
-        
+        System.out.println("\nJogadores proximos:");
         print(jogadores, posicao);
     }
 }

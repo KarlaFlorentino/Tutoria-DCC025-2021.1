@@ -34,7 +34,6 @@ public class Jogador {
         this.posicao[1] = y;
     }
 
-
     public int getNivel() {
         return nivel;
     }
@@ -50,7 +49,6 @@ public class Jogador {
     public void setExperiencia(int experiencia) {
         this.experiencia = experiencia;
     }
-
 
     public void imprime() {
         JOptionPane.showMessageDialog(null, "Nome: " + this.nome + "\n"
